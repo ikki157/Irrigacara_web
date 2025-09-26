@@ -1,0 +1,935 @@
+/* --- VARIAVEIS GLOBAIS --- */
+:root {
+    --color-green-dark: #2E7D32;
+    --color-green-light: #66BB6A;
+    --color-acai-purple: #4D004C;
+    --color-charcoal: #333333;
+    --color-background: #F7F7F7;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+/* --- RESET E ESTILOS BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-charcoal);
+    background-color: var(--color-background);
+    transition: background-color 0.8s ease-in-out; /* A MÁGICA DA TRANSIÇÃO DE COR */
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- COMPONENTES REUTILIZÁVEIS (BOTÕES, ETC) --- */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary {
+    background-color: transparent;
+    border: 2px solid var(--color-acai-purple);
+    color: var(--color-acai-purple);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-acai-purple);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background-color: var(--color-green-light);
+    color: white;
+    border: 2px solid var(--color-green-light);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-green-dark);
+    border-color: var(--color-green-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+
+/* --- CABEÇALHO (NAVBAR) --- */
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--color-acai-purple);
+    text-decoration: none;
+}
+
+.navbar nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: var(--color-charcoal);
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.navbar nav a:not(.btn)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-green-light);
+    transition: width 0.3s ease;
+}
+
+.navbar nav a:not(.btn):hover::after {
+    width: 100%;
+}
+
+
+/* --- ESTILOS DAS SEÇÕES --- */
+.section {
+    padding: 120px 0;
+    text-align: center;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5em;
+    color: var(--color-charcoal);
+    margin-bottom: 20px;
+}
+
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero h1 {
+    font-size: 3.5em;
+    font-family: var(--font-heading);
+    color: var(--color-acai-purple);
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+#hero p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+/* --- LAYOUTS ESPECÍFICOS --- */
+.two-columns {
+    display: flex;
+    gap: 40px;
+    text-align: left;
+    margin-top: 60px;
+}
+
+.column {
+    flex: 1;
+}
+
+.column h3 {
+    font-family: var(--font-heading);
+    color: var(--color-green-dark);
+    margin-bottom: 15px;
+}
+
+/* Diagrama de Processo */
+.process-diagram {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 60px;
+}
+
+.process-step {
+    flex: 1;
+    max-width: 250px;
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-acai-purple);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0 auto 20px;
+}
+
+.process-arrow {
+    font-size: 2.5em;
+    color: var(--color-green-light);
+    margin-top: 40px;
+}
+
+/* Grid de Benefícios */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.card h3 {
+    font-family: var(--font-heading);
+    color: var(--color-acai-purple);
+    margin-bottom: 15px;
+}
+
+/* Formulário de Contato */
+.contact-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.contact-form input {
+    padding: 15px;
+    width: 280px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    font-family: var(--font-body);
+}
+
+/* --- ANIMAÇÕES DE SCROLL --- */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- RODAPÉ --- */
+.footer {
+    padding: 60px 0 30px;
+    background: linear-gradient(135deg, var(--color-charcoal) 0%, #2a2a2a 100%);
+    color: #f7f7f7;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    margin-bottom: 40px;
+    align-items: start;
+}
+
+.footer-brand h3 {
+    font-family: var(--font-heading);
+    font-size: 2em;
+    color: var(--color-green-light);
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.team-section h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8em;
+    color: var(--color-green-light);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.team-member {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.member-photo {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--color-green-light);
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-placeholder {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-green-light), var(--color-green-dark));
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+}
+
+.member-info h4 {
+    font-family: var(--font-heading);
+    font-size: 1.2em;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.member-info p {
+    color: var(--color-green-light);
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.member-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.contact-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.email-icon {
+    color: #66BB6A;
+}
+
+.linkedin-icon {
+    color: #0077B5;
+}
+
+.instagram-icon {
+    color: #E1306C;
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.1);
+}
+
+.contact-item a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.85em;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contact-item:hover a {
+    color: white;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.footer-bottom p:last-child {
+    font-size: 0.9em;
+    opacity: 0.6;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+
+/* --- TABLET (768px a 1024px) --- */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    #hero h1 {
+        font-size: 3em;
+    }
+    
+    .section-title {
+        font-size: 2.2em;
+    }
+    
+    .process-diagram {
+        gap: 15px;
+    }
+    
+    .process-arrow {
+        font-size: 2em;
+    }
+    
+    .benefits-grid {
+        gap: 25px;
+    }
+    
+    .card {
+        padding: 30px;
+    }
+    
+    /* Footer responsivo para tablet */
+    .footer-content {
+        gap: 40px;
+    }
+    
+    .team-grid {
+        gap: 25px;
+    }
+    
+    .team-member {
+        padding: 20px;
+    }
+}
+
+/* --- TABLET PEQUENO (768px) --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    /* Navbar responsiva */
+    .navbar {
+        padding: 15px 0;
+    }
+    
+    .navbar .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .navbar nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .logo {
+        font-size: 1.6em;
+    }
+    
+    /* Hero Section */
+    #hero {
+        padding: 140px 0 80px;
+        min-height: 90vh;
+    }
+    
+    #hero h1 {
+        font-size: 2.5em;
+        line-height: 1.2;
+    }
+    
+    #hero p {
+        font-size: 1.1em;
+        margin-bottom: 30px;
+    }
+    
+    /* Seções */
+    .section {
+        padding: 80px 0;
+    }
+    
+    .section-title {
+        font-size: 2em;
+    }
+    
+    /* Layout de duas colunas para empilhado */
+    .two-columns {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    /* Diagrama de processo empilhado */
+    .process-diagram {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .process-arrow {
+        transform: rotate(90deg);
+        font-size: 2em;
+        margin: 0;
+    }
+    
+    .process-step {
+        max-width: 280px;
+    }
+    
+    /* Grid de benefícios para duas colunas */
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    /* Formulário de contato empilhado */
+    .contact-form {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    /* Footer responsivo para tablet/mobile */
+    .footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .footer-brand {
+        order: 2;
+    }
+    
+    .team-section {
+        order: 1;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .team-member {
+        padding: 20px 15px;
+    }
+    
+    .member-photo {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .member-info h4 {
+        font-size: 1.1em;
+    }
+    
+    .contact-item a {
+        font-size: 0.8em;
+    }
+    
+    .contact-icon {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* --- MOBILE (480px) --- */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Navbar mobile */
+    .navbar nav ul {
+        gap: 15px;
+        font-size: 0.9em;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    
+    .logo {
+        font-size: 1.4em;
+    }
+    
+    /* Hero mobile */
+    #hero {
+        padding: 120px 0 60px;
+    }
+    
+    #hero h1 {
+        font-size: 2em;
+        margin-bottom: 15px;
+    }
+    
+    #hero p {
+        font-size: 1em;
+        margin-bottom: 25px;
+    }
+    
+    /* Seções mobile */
+    .section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+    
+    /* Cards em uma coluna */
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .card {
+        padding: 25px 20px;
+    }
+    
+    .card h3 {
+        font-size: 1.2em;
+    }
+    
+    /* Processo mobile */
+    .process-step {
+        max-width: 250px;
+    }
+    
+    .step-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+    
+    .process-step h4 {
+        font-size: 1.1em;
+        margin: 15px 0 10px;
+    }
+    
+    .process-step p {
+        font-size: 0.9em;
+    }
+    
+    /* Formulário mobile */
+    .contact-form input {
+        font-size: 16px; /* Evita zoom no iOS */
+        padding: 12px 15px;
+    }
+    
+    /* Footer mobile */
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .team-member {
+        max-width: 280px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .footer-brand h3 {
+        font-size: 1.6em;
+    }
+    
+    .team-section h3 {
+        font-size: 1.5em;
+    }
+    
+    /* Ajustes de contatos para mobile pequeno */
+    .contact-item a {
+        font-size: 0.75em;
+        max-width: 180px;
+    }
+    
+    .contact-icon {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* --- MOBILE PEQUENO (320px) --- */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    #hero h1 {
+        font-size: 1.8em;
+    }
+    
+    .section-title {
+        font-size: 1.6em;
+    }
+    
+    .navbar nav ul {
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.85em;
+    }
+    
+    .card {
+        padding: 20px 15px;
+    }
+}
+
+/* --- DESKTOP GRANDE (1400px+) --- */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1300px;
+    }
+    
+    #hero h1 {
+        font-size: 4em;
+    }
+    
+    .section-title {
+        font-size: 3em;
+    }
+    
+    .benefits-grid {
+        gap: 40px;
+    }
+    
+    .card {
+        padding: 50px 40px;
+    }
+}
+
+/* ========== MENU HAMBÚRGUER MOBILE ========== */
+
+/* Botão hambúrguer - escondido por padrão */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: var(--color-acai-purple);
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+/* Estilos para mobile do menu */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        order: 2;
+    }
+    
+    .logo {
+        order: 1;
+    }
+    
+    .navbar nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        order: 3;
+    }
+    
+    .navbar nav.nav-open {
+        transform: translateX(0);
+    }
+    
+    .navbar nav ul {
+        flex-direction: column;
+        gap: 30px;
+        font-size: 1.2em;
+    }
+    
+    .navbar .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .hamburger.active {
+        color: var(--color-green-dark);
+        transform: rotate(90deg);
+    }
+}
+
+/* ========== OTIMIZAÇÕES PARA DISPOSITIVOS TOUCH ========== */
+
+/* Aumentar área de toque para links e botões em mobile */
+@media (max-width: 768px) {
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .navbar nav a {
+        padding: 10px 15px;
+        display: block;
+        text-align: center;
+    }
+}
+
+/* Remover hover effects em dispositivos touch */
+@media (hover: none) {
+    .btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .navbar nav a:not(.btn):hover::after {
+        width: 0;
+    }
+}
+
+/* Melhorar contraste para leitura em dispositivos móveis */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    p {
+        margin-bottom: 1.2em;
+    }
+    
+    /* Garantir que texto seja legível em todas as seções coloridas */
+    .section {
+        color: var(--color-charcoal);
+    }
+}
+
+/* ========== PERFORMANCE E ACESSIBILIDADE ========== */
+
+/* Reduzir animações em dispositivos com preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll {
+        transition: none;
+    }
+    
+    .btn {
+        transition: none;
+    }
+    
+    body {
+        transition: none;
+    }
+    
+    * {
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Focus styles para navegação por teclado */
+.btn:focus,
+.navbar nav a:focus,
+.contact-form input:focus,
+.hamburger:focus {
+    outline: 2px solid var(--color-green-light);
+    outline-offset: 2px;
+}
+
+/* Garantir visibilidade em modo escuro do sistema */
+@media (prefers-color-scheme: dark) {
+    /* Manter design atual mas melhorar contraste se necessário */
+}
