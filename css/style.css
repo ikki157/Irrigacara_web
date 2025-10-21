@@ -1,12 +1,12 @@
 /* --- VARIAVEIS GLOBAIS - IRRIGAÇARA THEME --- */
 :root {
-    --color-acai-dark: #0E4068;     /* cor primária (azul) */
-    --color-acai-light: #0E6090;    /* variação clara */
-    --color-water-blue: #0277BD;    /* azul irrigação */
-    --color-plant-green: #2E507D;   /* renomeado para tom azul */
-    --color-leaf-light: #667EBB;    /* variação azul clara */
-    --color-earth: #345B7A;         /* tom azulado terra */
-    --color-charcoal: #042236;      /* carvão -> azul bem escuro */
+    --color-acai-dark: #4D004C;     /* Açaí escuro - identidade */
+    --color-acai-light: #8E24AA;    /* Açaí claro */
+    --color-water-blue: #0277BD;    /* Azul da irrigação */
+    --color-plant-green: #2E7D32;   /* Verde das plantas */
+    --color-leaf-light: #66BB6A;    /* Verde claro das folhas */
+    --color-earth: #5D4037;         /* Cor da terra */
+    --color-charcoal: #333333;
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Lato', sans-serif;
 }
@@ -24,19 +24,32 @@ html {
     scroll-behavior: smooth;
 }
 
+/* --- EFEITO PARALLAX FIXO --- */
 body {
-    min-height: 100vh;
     font-family: var(--font-body);
     color: var(--color-charcoal);
+    background: url('../assets/fundo_amazonia.jpg') center center / cover no-repeat fixed;
     font-size: 16px;
+    min-height: 100vh;
     line-height: 1.6;
-    overflow-x: hidden;
-    background: linear-gradient(
-    rgba(217, 217, 217, 1),
-    rgba(217, 217, 217, 0.7),
-    rgba(217, 217, 217, 1),
-    rgba(217, 217, 217, 1)),
-    url('../assets/fundo_amazonia.jpg') center center / cover no-repeat scroll;
+}
+
+.content-wrapper {
+    background: rgba(245, 250, 245, 0.30);
+    backdrop-filter: blur(15px);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+.section {
+    position: relative;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .container {
@@ -60,7 +73,7 @@ img {
     font-weight: 600;
     font-size: 16px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(4,34,54,0.12);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .btn-secondary {
@@ -71,7 +84,7 @@ img {
 
 .btn-secondary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(14, 64, 104, 0.28);
+    box-shadow: 0 8px 25px rgba(77, 0, 76, 0.3);
     background: var(--color-plant-green);
     border-color: var(--color-plant-green);
 }
@@ -84,10 +97,10 @@ img {
     left: 0;
     padding: 20px 0;
     z-index: 9999;
-    background: rgba(240, 248, 255, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(15px);
-    box-shadow: 0 2px 20px rgba(4,34,54,0.12);
-    border-bottom: 1px solid rgba(14, 64, 104, 0.08);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(77, 0, 76, 0.1);
 }
 
 .navbar .container {
@@ -122,7 +135,7 @@ img {
 }
 
 .navbar nav a:hover {
-    background: rgba(14, 64, 104, 0.06);
+    background: rgba(77, 0, 76, 0.1);
     color: var(--color-acai-dark);
     transform: translateY(-1px);
 }
@@ -186,11 +199,11 @@ img {
 
 #problema .problem-text {
     flex: 1;
-    background: rgba(245, 250, 255, 0.82);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(8px);
     padding: 30px;
     border-radius: 15px;
-    border: 1px solid rgba(14, 64, 104, 0.12);
+    border: 1px solid rgba(77, 0, 76, 0.2);
 }
 
 #problema .problem-text p {
@@ -203,8 +216,8 @@ img {
 
 #problema .problem-image img {
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(4,34,54,0.18);
-    border: 2px solid rgba(2,119,189,0.18);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 2px solid rgba(46, 125, 50, 0.3);
 }
 
 /* --- LAYOUTS ESPECÍFICOS --- */
@@ -221,14 +234,14 @@ img {
     backdrop-filter: blur(8px);
     padding: 25px;
     border-radius: 15px;
-    border: 1px solid rgba(2,119,189,0.16);
+    border: 1px solid rgba(46, 125, 50, 0.2);
     transition: all 0.3s ease;
 }
 
 .column:hover {
-    background: rgba(245, 250, 255, 0.9);
+    background: rgba(255, 255, 255, 0.9);
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(2,119,189,0.18);
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.2);
 }
 
 .solution-icon {
@@ -261,14 +274,14 @@ img {
     backdrop-filter: blur(8px);
     padding: 25px 15px;
     border-radius: 15px;
-    border: 1px solid rgba(2,119,189,0.16);
+    border: 1px solid rgba(2, 119, 189, 0.2);
     transition: all 0.3s ease;
 }
 
 .process-step:hover {
     background: rgba(255, 255, 255, 0.9);
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(2,119,189,0.18);
+    box-shadow: 0 8px 25px rgba(2, 119, 189, 0.2);
 }
 
 .step-icon {
@@ -283,14 +296,14 @@ img {
     font-size: 1.8em;
     font-weight: 700;
     margin: 0 auto 25px;
-    box-shadow: 0 8px 25px rgba(14,64,104,0.28);
+    box-shadow: 0 8px 25px rgba(77, 0, 76, 0.3);
     transition: all 0.3s ease;
 }
 
 .process-step:hover .step-icon {
     transform: scale(1.1);
     background: var(--color-water-blue);
-    box-shadow: 0 12px 35px rgba(2,119,189,0.32);
+    box-shadow: 0 12px 35px rgba(2, 119, 189, 0.4);
 }
 
 .process-arrow {
@@ -311,10 +324,10 @@ img {
 .card {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(14,64,104,0.08);
+    border: 1px solid rgba(77, 0, 76, 0.1);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(4,34,54,0.12);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -322,10 +335,10 @@ img {
 }
 
 .card:hover {
-    background: rgba(245, 250, 255, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(14,64,104,0.18);
-    border-color: rgba(2,119,189,0.18);
+    box-shadow: 0 15px 35px rgba(77, 0, 76, 0.2);
+    border-color: rgba(46, 125, 50, 0.3);
 }
 
 .card h3 {
@@ -353,7 +366,7 @@ img {
     color: #f7f7f7;
     position: relative;
     z-index: 10;
-    box-shadow: 0 -10px 30px rgba(4,34,54,0.28);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
     border-top: 2px solid var(--color-leaf-light);
 }
 
@@ -395,22 +408,22 @@ img {
 }
 
 .team-member {
-    background: rgba(240, 248, 255, 0.08);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(15px);
     border-radius: 20px;
     padding: 30px;
     text-align: center;
     transition: all 0.3s ease;
-    border: 1px solid rgba(240, 248, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     width: 100%;
     max-width: 280px;
 }
 
 .team-member:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(4,34,54,0.36);
-    background: rgba(240, 248, 255, 0.12);
-    border-color: rgba(2,119,189,0.12);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(102, 187, 106, 0.3);
 }
 
 .member-photo {
@@ -422,12 +435,12 @@ img {
     overflow: hidden;
     border: 3px solid var(--color-leaf-light);
     transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(2,119,189,0.28);
+    box-shadow: 0 8px 25px rgba(102, 187, 106, 0.3);
 }
 
 .member-photo:hover {
     transform: scale(1.05);
-    box-shadow: 0 12px 35px rgba(2,119,189,0.38);
+    box-shadow: 0 12px 35px rgba(102, 187, 106, 0.5);
 }
 
 .member-photo img {
@@ -461,7 +474,7 @@ img {
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(240,248,255,0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 30px;
     text-align: center;
 }
@@ -518,7 +531,7 @@ img {
     }
     
     .hamburger:hover {
-    background: rgba(14,64,104,0.06);
+        background: rgba(77, 0, 76, 0.1);
     }
     
     .logo {
@@ -531,7 +544,7 @@ img {
         left: 0;
         width: 100%;
         height: 100vh;
-    background: rgba(245,250,255,0.98);
+        background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(20px);
         display: flex;
         align-items: center;
@@ -651,11 +664,11 @@ img {
     padding: 6px 8px;
     border-radius: 8px;
     transition: all 0.3s ease;
-    background: rgba(240,248,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .contact-item:hover {
-    background: rgba(240,248,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
     transform: translateX(5px);
 }
 
@@ -687,7 +700,7 @@ img {
 }
 
 .contact-item a {
-    color: rgba(240,248,255,0.92);
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     font-size: 0.85em;
     font-weight: 400;
@@ -706,7 +719,7 @@ img {
 .contact-section {
     margin: 50px 0 30px;
     text-align: center;
-    border-top: 1px solid rgba(240,248,255,0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 40px;
 }
 
@@ -739,9 +752,9 @@ img {
 .contact-form textarea {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid rgba(240,248,255,0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
-    background: rgba(240,248,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     color: white;
     font-family: var(--font-body);
     font-size: 14px;
@@ -750,15 +763,15 @@ img {
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-    color: rgba(240,248,255,0.68);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--color-leaf-light);
-    background: rgba(240,248,255,0.08);
-    box-shadow: 0 0 0 3px rgba(2,119,189,0.08);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(102, 187, 106, 0.1);
 }
 
 .contact-form textarea {
